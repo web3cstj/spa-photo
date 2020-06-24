@@ -1,11 +1,11 @@
 <template>
     <div class="photo">
-        <div class="liste" v-if="photos">
-            <div class="photo" v-for="(photo, i) in photos" :key="i"><img :src="photo" alt=""/></div>
-        </div>
         <div>
-            <input type="file" ref="photo" name="photo" id="photo" @change="changePhoto">
+            <input type="file" ref="photos" multiple name="photos" id="photos">
             <button @click="submitFile">Submit</button>
+        </div>
+        <div class="liste" v-if="photos">
+            <span class="photo" v-for="(photo, i) in photos" :key="i"><img :src="photo" alt=""/></span>
         </div>
     </div>
 </template>
@@ -34,15 +34,14 @@ export default {
                 this.photos = response.data;
             });
         },
-        changePhoto() {
-            this.file = this.$refs.photo.files[0];
-        },
         submitFile(){
             /*Initialize the form data*/
             let formData = new FormData();
-
+            const files = Array.from(this.$refs.photos.files);
             /*Add the form data we need to submit*/
-            formData.append('file', this.file);
+            files.forEach(file => {
+                formData.append('photos[]', file);
+            });
 
             /*Make the request to the POST /api/photo URL*/
             const options = {

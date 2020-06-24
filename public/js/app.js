@@ -2005,17 +2005,17 @@ __webpack_require__.r(__webpack_exports__);
         _this.photos = response.data;
       });
     },
-    changePhoto: function changePhoto() {
-      this.file = this.$refs.photo.files[0];
-    },
     submitFile: function submitFile() {
       var _this2 = this;
 
       /*Initialize the form data*/
       var formData = new FormData();
+      var files = Array.from(this.$refs.photos.files);
       /*Add the form data we need to submit*/
 
-      formData.append('file', this.file);
+      files.forEach(function (file) {
+        formData.append('photos[]', file);
+      });
       /*Make the request to the POST /api/photo URL*/
 
       var options = {
@@ -38364,28 +38364,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "photo" }, [
+    _c("div", [
+      _c("input", {
+        ref: "photos",
+        attrs: { type: "file", multiple: "", name: "photos", id: "photos" }
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.submitFile } }, [_vm._v("Submit")])
+    ]),
+    _vm._v(" "),
     _vm.photos
       ? _c(
           "div",
           { staticClass: "liste" },
           _vm._l(_vm.photos, function(photo, i) {
-            return _c("div", { key: i, staticClass: "photo" }, [
+            return _c("span", { key: i, staticClass: "photo" }, [
               _c("img", { attrs: { src: photo, alt: "" } })
             ])
           }),
           0
         )
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", [
-      _c("input", {
-        ref: "photo",
-        attrs: { type: "file", name: "photo", id: "photo" },
-        on: { change: _vm.changePhoto }
-      }),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.submitFile } }, [_vm._v("Submit")])
-    ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -53965,15 +53964,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************!*\
   !*** ./resources/js/views/Photo.vue ***!
   \**************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Photo_vue_vue_type_template_id_46e3fba3___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Photo.vue?vue&type=template&id=46e3fba3& */ "./resources/js/views/Photo.vue?vue&type=template&id=46e3fba3&");
 /* harmony import */ var _Photo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Photo.vue?vue&type=script&lang=js& */ "./resources/js/views/Photo.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Photo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Photo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _Photo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Photo.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/views/Photo.vue?vue&type=style&index=0&lang=scss&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Photo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Photo.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/views/Photo.vue?vue&type=style&index=0&lang=scss&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -54005,7 +54003,7 @@ component.options.__file = "resources/js/views/Photo.vue"
 /*!***************************************************************!*\
   !*** ./resources/js/views/Photo.vue?vue&type=script&lang=js& ***!
   \***************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
